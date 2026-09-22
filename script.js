@@ -1,20 +1,12 @@
-const server = document.getElementById("server");
-const information = document.getElementById("information");
+const popup = document.getElementById("welcome-popup");
+const closePopup = document.getElementById("close-popup");
 
-server.addEventListener("click", function() {
+const music = document.getElementById("background-music");
 
-    information.innerHTML = `
-        <h2>SERVER</h2>
+music.volume = 0.5;
 
-        <p>
-            This is a physical computer inside the data centre.
-            Servers can host websites, databases, virtual machines
-            and many other services.
-        </p>
+closePopup.addEventListener("click", function() {
+    popup.style.display = "none";
 
-        <p>
-            The server is mounted inside a rack.
-        </p>
-    `;
-
+    music.play();
 });

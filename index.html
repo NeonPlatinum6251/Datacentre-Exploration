@@ -13,20 +13,40 @@
 <body>
     <style>
     body {
-    background-image: url('OutsideDither.png');
+    background-image: url('images/OutsideDither.png');
     }
     </style>
 
+    <audio id="background-music" loop>
+    <source src="audio/BoardsofCanada.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="welcome-popup">
+    <div class="popup-box">
+
+        <h2>WELCOME</h2>
+
+        <p>
+            Welcome to the Data Centre.
+        </p>
+
+        <p>
+            Explore the area by clicking on objects and people.
+            Find clues and codes to access new areas  
+        </p>
+
+        <button id="close-popup">ENTER</button>
+
+    </div>
+    </div>
+
+
     <main>
-        <h1>DATA CENTRE ADVENTURE</h1>
-
-        <p>welcome to the data centre.</p>
-
-        <button id="server">Inspect Server</button>
-
-        <div id="information">
-            Click the server to learn more.
+        <div class="padlock">
+            <img src="images/transpadlock.png" alt="Padlock">
         </div>
+
+ 
     </main>
 
     <script src="script.js"></script>

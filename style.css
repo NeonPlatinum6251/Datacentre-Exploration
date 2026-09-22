@@ -9,10 +9,6 @@ main {
     margin: 50px auto;
 }
 
-h1 {
-    color: #000000;
-}
-
 button {
     background: #222;
     color: #66ff99;
@@ -31,4 +27,68 @@ button:hover {
     padding: 20px;
     border: 1px solid #444;
     background: #181818;
+}
+
+#welcome-popup {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.popup-box {
+    width: 500px;
+
+    padding: 30px;
+
+    background: #181818;
+    color: #eee;
+
+    border: 2px solid #66ff99;
+
+    text-align: center;
+}
+
+.popup-box h2 {
+    color: #66ff99;
+}
+
+#close-popup {
+    margin-top: 20px;
+
+    padding: 10px 30px;
+
+    background: #222;
+    color: #66ff99;
+
+    border: 1px solid #66ff99;
+
+    cursor: pointer;
+}
+
+#close-popup:hover {
+    background: #66ff99;
+    color: #111;
+}
+
+.padlock {
+    position: absolute;
+    left: 1350px;
+    top: 850px;
+}
+
+.padlock img {
+    width: 60px;
+    cursor: pointer;
 }
