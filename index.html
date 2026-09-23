@@ -21,6 +21,10 @@
     <source src="audio/BoardsofCanada.mp3" type="audio/mpeg">
     </audio>
 
+    <audio id="lock-sound" >
+        <source src="audio/Lock.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="welcome-popup">
     <div class="popup-box">
 
@@ -31,6 +35,10 @@
         </p>
 
         <p>
+            You have arrived at a data centre somewhere in Ireland.
+            Your goal is to decide the fate of the data centre.
+            You can either save it or destroy it.
+            The choice is yours.
             Explore the area by clicking on objects and people.
             Find clues and codes to access new areas  
         </p>
@@ -40,13 +48,62 @@
     </div>
     </div>
 
+    <div id="lock-popup">
+
+    <div id="lock-box">
+
+        <h2>ACCESS REQUIRED</h2>
+
+        <p>Enter the access code.</p>
+
+        <input
+            type="text"
+            id="code-input"
+            placeholder="ACCESS CODE"
+        >
+
+        <button id="submit-code">ENTER</button>
+
+        <button id="close-lock">CANCEL</button>
+
+        <p id="code-message"></p>
+
+    </div>
+
+    </div>
+
+    <div id="protest-speech">
+
+        <div id="speech-box">
+
+            <h2>PROTESTORS</h2>
+
+            <p>
+                The protestors are outside the data centre.
+                They are demanding that the data centre be shut down.
+                They are concerned about the environmental impact of the data centre.
+                They are also concerned about the privacy of the data stored in the data centre.
+            </p>
+
+            <button id="close-speech">CLOSE</button>
+
+        </div>
+    </div>
+
 
     <main>
         <div class="padlock">
-            <img src="images/transpadlock.png" alt="Padlock">
+            <img src="images/transpadlock.png" alt="Padlock" id="padlock">
         </div>
 
- 
+        <div class="smoke">
+            <img src="images/smoke.gif" alt="Smoke" id="smoke">
+        </div>
+        
+        <div class="protest">
+            <img src="images/protestors.png" alt="Protestors" id="protestors">
+        </div>
+
     </main>
 
     <script src="script.js"></script>
