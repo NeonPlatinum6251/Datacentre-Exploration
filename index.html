@@ -1,95 +1,64 @@
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Data Centre Adventure</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <style>
     body {
-    background-image: url('images/OutsideDither.png');
+        background-image: url('images/OutsideDither.png');
     }
     </style>
 
     <audio id="background-music" loop>
-    <source src="audio/BoardsofCanada.mp3" type="audio/mpeg">
+        <source src="audio/BoardsofCanada.mp3" type="audio/mpeg">
     </audio>
 
-    <audio id="lock-sound" >
+    <audio id="lock-sound">
         <source src="audio/Lock.mp3" type="audio/mpeg">
     </audio>
 
+
     <div id="welcome-popup">
-    <div class="popup-box">
-
-        <h2>WELCOME</h2>
-
-        <p>
-            Welcome to the Data Centre.
-        </p>
-
-        <p>
-            You have arrived at a data centre somewhere in Ireland.
-            Your goal is to decide the fate of the data centre.
-            You can either save it or destroy it.
-            The choice is yours.
-            Explore the area by clicking on objects and people.
-            Find clues and codes to access new areas  
-        </p>
-
-        <button id="close-popup">ENTER</button>
-
-    </div>
-    </div>
-
-    <div id="lock-popup">
-
-    <div id="lock-box">
-
-        <h2>ACCESS REQUIRED</h2>
-
-        <p>Enter the access code.</p>
-
-        <input
-            type="text"
-            id="code-input"
-            placeholder="ACCESS CODE"
-        >
-
-        <button id="submit-code">ENTER</button>
-
-        <button id="close-lock">CANCEL</button>
-
-        <p id="code-message"></p>
-
-    </div>
-
-    </div>
-
-    <div id="protest-speech">
-
-        <div id="speech-box">
-
-            <h2>PROTESTORS</h2>
-
+        <div class="popup-box">
+            <h2>WELCOME</h2>
+            <p>Welcome to the Data Centre.</p>
             <p>
-                The protestors are outside the data centre.
-                They are demanding that the data centre be shut down.
-                They are concerned about the environmental impact of the data centre.
-                They are also concerned about the privacy of the data stored in the data centre.
+                You have arrived at a data centre somewhere in Ireland.
+                Your goal is to decide the fate of the data centre.
+                You can either save it or destroy it.
+                The choice is yours.
+                Explore the area by clicking on objects and people.
+                Find clues and codes to access new areas.
             </p>
-
-            <button id="close-speech">CLOSE</button>
-
+            <button id="close-popup">ENTER</button>
         </div>
     </div>
 
+    <div id="lock-popup">
+        <div id="lock-box">
+            <h2>ACCESS REQUIRED</h2>
+            <p>Enter the access code.</p>
+            <input type="text" id="code-input" placeholder="ACCESS CODE">
+            <button id="submit-code">ENTER</button>
+            <button id="close-lock">CANCEL</button>
+            <p id="code-message"></p>
+        </div>
+    </div>
+
+    <div id="dialogue-modal">
+        <div id="speech-box">
+            <h2 id="speaker-title">SPEAKER</h2>
+            <p id="dialogue-text">Dialogue goes here...</p>
+            <div id="dialogue-options"></div>
+            <button id="close-speech">CLOSE</button>
+        </div>
+    </div>
 
     <main>
         <div class="padlock">
@@ -104,8 +73,17 @@
             <img src="images/protestors.png" alt="Protestors" id="protestors">
         </div>
 
+
+        <div class="media">
+            <img src="images/reporter_icon.png" alt="Reporter" id="reporter">
+        </div>
+
+
+        <div id="portrait-container">
+            <img src="images/angryman.png" alt="Speaker Portrait" id="speaker-portrait">
+        </div>
     </main>
 
     <script src="script.js"></script>
 </body>
-
+</html>
