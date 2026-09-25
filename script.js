@@ -2,12 +2,16 @@ const popup = document.getElementById("welcome-popup");
 const closePopup = document.getElementById("close-popup");
 const music = document.getElementById("background-music");
 
-music.volume = 0.5;
+if (music) {
+    music.volume = 0.5;
+}
 
-closePopup.addEventListener("click", function() {
-    popup.style.display = "none";
-    music.play();
-});
+if (closePopup) {
+    closePopup.addEventListener("click", function() {
+        popup.style.display = "none";
+        music.play();
+    });
+}
 
 const padlock = document.getElementById("padlock");
 const lockPopup = document.getElementById("lock-popup");
@@ -17,27 +21,33 @@ const submitCode = document.getElementById("submit-code");
 const codeInput = document.getElementById("code-input");
 const codeMessage = document.getElementById("code-message");
 
-padlock.addEventListener("click", function() {
-    lockSound.currentTime = 0;
-    lockSound.play();
-    lockPopup.style.display = "flex";
-    codeInput.focus();
-});
+if (padlock) {
+    padlock.addEventListener("click", function() {
+        lockSound.currentTime = 0;
+        lockSound.play();
+        lockPopup.style.display = "flex";
+        codeInput.focus();
+    });
+}
 
-closeLock.addEventListener("click", function() {
-    lockPopup.style.display = "none";
-    codeInput.value = "";
-    codeMessage.textContent = "";
-});
+if (closeLock) {
+    closeLock.addEventListener("click", function() {
+        lockPopup.style.display = "none";
+        codeInput.value = "";
+        codeMessage.textContent = "";
+    });
+}
 
-submitCode.addEventListener("click", function() {
-    const enteredCode = codeInput.value;
-    if (enteredCode === "12") {
-        window.location.href = "datacentre.html";
-    } else {
-        codeMessage.textContent = "INCORRECT ACCESS CODE.";
-    }
-});
+if (submitCode) {
+    submitCode.addEventListener("click", function() {
+        const enteredCode = codeInput.value;
+        if (enteredCode === "12") {
+            window.location.href = "datacentre.html";
+        } else {
+            codeMessage.textContent = "INCORRECT ACCESS CODE.";
+        }
+    });
+}
 
 const dialogueModal = document.getElementById("dialogue-modal");
 const speakerTitle = document.getElementById("speaker-title");
@@ -67,8 +77,65 @@ const npcData = {
             { text: '"Are there new regulations?"', response: "Yes, tighter policies force new data centers to generate their own renewable power on-site to reduce pressure on the public grid." },
             { text: '"Why is public acceptance so divided?"', response: "People accept national digital growth in principle, but resist local facilities when they fear household electricity strain and water shortages." }
         ]
-    }
-};
+    },
+    worker: {
+        title: "DATA CENTER WORKER",
+        image: "images/worker.png",
+        intro: "Hello, can I help you? I work here at the data center.",
+        options: [
+            { text: '"What does it take to keep a facility like this running?"', response: "More power than most folks realize. Back in 2015, all the data centres in Ireland were using around 1,240 GWh of electricity a year. By 2024, that jumped to nearly 7,000 GWh—over 21% of the entire national electricity consumption! Right now across the sub-regions, between Dublin SouthWest and NorthWest alone, we're monitoring over 900 IT Megawatts of design capacity. The grid is under serious contract ramp pressure."},
+            { text: 'People outside are protesting water and power waste. Are those figures accurate?', response: "Look, I hear their concerns—especially on water. But on efficiency, our metrics are top-tier. Our Power Usage Effectiveness here is sitting at 1.14 for hyperscale operations, compared to the European colocation average of 1.28. On water, our Water Usage Effectiveness is down around 0.51 L/kWh for hyperscale facilities because we use closed-loop liquid cooling. We’re not running open evaporative towers 24/7."},
+            { text: '""How are you planning to handle future demand?"', response: "We can't just rely on raw grid power anymore. Grid CO2 intensity dropped from 896 gCO2/kWh back in 1990 down to around 255 gCO₂/kWh today, but that’s not fast enough. We’re deploying on-site battery energy storage systems, securing corporate power purchase agreements for wind, and setting up demand-flexibility response so we can throttle back when national demand peaks."},
+            {text: "Where can I find more information?", response: "I'm not really supposed to do this, but you can access the terminal over there for more data. The passcode is the amount of electricty data centers used in 2024"}
+        ]
+    },
+    terminal: {
+        title: "DATA CENTRE TERMINAL",
+        image: "images/terminal.png",
+        intro: "The terminal is online. What would you like to inspect?",
+        options: [
+            {
+                text: "Check the power systems", response: "The terminal reports that the facility is drawing heavily from the national grid.",
+                followUp: [
+                    { text: "View today's demand", response: "Demand is close to the site's maximum capacity." },
+                    { text: "Inspect the backup batteries", response: "The batteries are charged and ready to support the facility during a peak." },
+                    { text: "Review renewable sources", response: "A small portion of the facility's electricity currently comes from renewable contracts." }
+                ]
+            },
+
+            {
+                text:"Decide the fate of the center", response: "SYSTEM POWER CONTROL",
+                followUp: [
+                    { text: "Log off the data center and leave this place", response: "", action: () => { window.location.href = "ending-status-quo.html"; } },
+                    {text: "trigger an emergency circuit trip/load shedding via terminal code to force the facility offline", response: "", action: () => { window.location.href = "ending-shutdown.html"; }},
+                    {text: "You override the power router to require 100% On-Site Renewable Contracts (CPPAs), Battery Energy Storage Systems (BESS), and Demand Flexibility.", response: "", action: () => { window.location.href = "ending-renewable.html"; }}
+                ]
+            }
+
+
+        ]
+}};
+
+function renderDialogueOptions(options) {
+    dialogueOptions.innerHTML = "";
+
+    options.forEach(option => {
+        const btn = document.createElement("button");
+        btn.className = "dialogue-btn";
+        btn.textContent = option.text;
+        btn.onclick = () => {
+            dialogueText.textContent = option.response;
+            if (option.action) {
+                option.action();
+                return;
+            }
+            if (option.followUp) {
+                renderDialogueOptions(option.followUp);
+            }
+        };
+        dialogueOptions.appendChild(btn);
+    });
+}
 
 function openDialogue(npcKey) {
     const npc = npcData[npcKey];
@@ -79,22 +146,15 @@ function openDialogue(npcKey) {
     speakerPortrait.src = npc.image;
     portraitContainer.style.display = "block";
 
-    dialogueOptions.innerHTML = "";
-
-    npc.options.forEach(option => {
-        const btn = document.createElement("button");
-        btn.className = "dialogue-btn";
-        btn.textContent = option.text;
-        btn.onclick = () => {
-            dialogueText.textContent = option.response;
-        };
-        dialogueOptions.appendChild(btn);
-    });
+    renderDialogueOptions(npc.options);
 
     dialogueModal.style.display = "flex";
 }
 
-document.getElementById("protestors").addEventListener("click", () => openDialogue("protester"));
+const protestorsButton = document.getElementById("protestors");
+if (protestorsButton) {
+    protestorsButton.addEventListener("click", () => openDialogue("protester"));
+}
 
 const reporterBtn = document.getElementById("reporter");
 if (reporterBtn) {
@@ -105,3 +165,41 @@ closeSpeech.addEventListener("click", () => {
     dialogueModal.style.display = "none";
     portraitContainer.style.display = "none";
 });
+
+
+document.getElementById("worker").addEventListener("click", () => openDialogue("worker"));
+
+const terminalButton = document.getElementById("terminal");
+const terminalLockPopup = document.getElementById("terminal-lock-popup");
+const terminalCodeInput = document.getElementById("terminal-code-input");
+const submitTerminalCode = document.getElementById("submit-terminal-code");
+const closeTerminalLock = document.getElementById("close-terminal-lock");
+const terminalCodeMessage = document.getElementById("terminal-code-message");
+
+if (terminalButton) {
+    terminalButton.addEventListener("click", () => {
+        terminalLockPopup.style.display = "flex";
+        terminalCodeInput.focus();
+    });
+}
+
+if (submitTerminalCode) {
+    submitTerminalCode.addEventListener("click", () => {
+        if (terminalCodeInput.value === "7000") {
+            terminalLockPopup.style.display = "none";
+            terminalCodeInput.value = "";
+            terminalCodeMessage.textContent = "";
+            openDialogue("terminal");
+        } else {
+            terminalCodeMessage.textContent = "INCORRECT ACCESS CODE.";
+        }
+    });
+}
+
+if (closeTerminalLock) {
+    closeTerminalLock.addEventListener("click", () => {
+        terminalLockPopup.style.display = "none";
+        terminalCodeInput.value = "";
+        terminalCodeMessage.textContent = "";
+    });
+}

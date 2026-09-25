@@ -4,17 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Inside the Data Centre</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <style>
          body {
-    background-image: url('images/________.png');
+    background-image: url('images/inside.png');
     }
     </style>
 
+    <div id="dialogue-modal">
+            <div id="portrait-container">
+                <img src="" alt="Speaker Portrait" id="speaker-portrait">
+            </div>
+            <div id="speech-box">
+                <h3 id="speaker-title">Speaker Name</h3>
+                <p id="dialogue-text">Dialogue lines go here...</p>
+                <div id="dialogue-options"></div>
+                <button id="close-speech">Close [X]</button>
+            </div>
+        </div>
+
+    <div id="terminal-lock-popup">
+        <div id="terminal-lock-box">
+            <h2>TERMINAL ACCESS REQUIRED</h2>
+            <p>Enter the terminal access code.</p>
+            <input type="text" id="terminal-code-input" placeholder="ACCESS CODE">
+            <button id="submit-terminal-code">ENTER</button>
+            <button id="close-terminal-lock">CANCEL</button>
+            <p id="terminal-code-message"></p>
+        </div>
+    </div>
+
+    <main>
+        <div class="worker">
+            <img src="images/worker.png" alt ="worker" id="worker">
+        </div>
+        <div class ="terminal">
+            <img src ="images/terminal.png" alt="Terminal" id="terminal">
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
+</html>

@@ -43,8 +43,22 @@ button:hover {
     z-index: 9999;
 }
 
+#terminal-lock-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
 .popup-box,
-#lock-box {
+#lock-box,
+#terminal-lock-box {
     width: 500px;
     padding: 30px;
     background: #181818;
@@ -61,7 +75,19 @@ button:hover {
     outline: none;
 }
 
+#terminal-code-input {
+    padding: 10px;
+    background: #111;
+    color: #66ff99;
+    border: 1px solid #66ff99;
+    outline: none;
+}
+
 #code-message {
+    color: #ff6666;
+}
+
+#terminal-code-message {
     color: #ff6666;
 }
 
@@ -162,12 +188,12 @@ button:hover {
 
 .media {
     position: absolute;
-    left: 600px;
-    top: 400px;
+    left: 800px;
+    top: 900px;
 }
 
 .media img {
-    width: 100px;
+    width: 200px;
     cursor: pointer;
 }
 
@@ -184,4 +210,26 @@ button:hover {
     width: 450px;
     height: auto;
     display: block;
+}
+
+.worker {
+    position: absolute;
+    left: 50px;
+    top: 450px;
+}
+
+.worker img {
+    width: 700px;
+    cursor: pointer;
+}
+
+.terminal {
+    position:absolute;
+    left:900px;
+    top: 400px;
+}
+
+.terminal img {
+    width: 500px;
+    cursor:pointer;
 }
